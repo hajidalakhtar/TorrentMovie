@@ -50,7 +50,7 @@ app.get('/browse-movies', (req, res) => {
         .then(function (response) {
             function data(data) {
                 trending1 = data;
-                trending.length = 10
+                trending1.length = 10
             }
             data(response.data)
         })
@@ -82,7 +82,7 @@ app.get('/browse-movies', (req, res) => {
             console.log(error);
         });
 
-    res.render('home', { trending: trending, year: year, rating: rating })
+    res.render('home', { trending: trending1, year: year, rating: rating })
 
 })
 
