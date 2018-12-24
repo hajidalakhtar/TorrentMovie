@@ -50,7 +50,7 @@ app.get('/browse-movies', (req, res) => {
         .then(function (response) {
             function data(data) {
                 trending1 = data;
-                trending1.length = 10
+                trending.length = 10
             }
             data(response.data)
         })
@@ -82,7 +82,7 @@ app.get('/browse-movies', (req, res) => {
             console.log(error);
         });
 
-    res.render('home', { trending: trending1, year: year, rating: rating })
+    res.render('home', { trending: trending, year: year, rating: rating })
 
 })
 
@@ -96,15 +96,12 @@ app.get('/trending/:page', (req, res) => {
 
     axios.get(`https://tv-v2.api-fetch.website/movies/${req.params.page}?sort=trending&order=-1`)
         .then(function (response) {
-            function data(data) {
-                trending = data;
-            }
-            data(response.data)
+            res.render('trending', { trending: response.data, page: global.page })
         })
         .catch(function (error) {
             console.log(error);
         });
-    res.render('trending', { trending: trending, page: global.page })
+
 
 
 })
