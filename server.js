@@ -41,12 +41,16 @@ app.get('/search', (req, res) => {
     // res.redirect('/browse-movies')
     PopCorn.movies.search({ query: req.query.query })
         .then(function (movies) {
-            res.render('search', { trending: movies })
+            global.data = 0
+
+            if (movies.length >= 1) {
+                global.data = 1
+
+            }
+            res.render('search', { trending: movies, data: data })
             // res.send(JSON.stringify({ "status": 200, "error": null, "response": movies }));
 
-
         })
-
 })
 
 app.get('/next', (req, res) => {
@@ -66,8 +70,6 @@ app.get('/browse-movies', (req, res) => {
     res.render('home')
 
 })
-
-
 
 
 app.get('/trending/:page', (req, res) => {

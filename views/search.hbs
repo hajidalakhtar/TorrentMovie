@@ -59,7 +59,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" id="data">
         <div class="col-md-12">
             <h1 class="h5" style="margin-left:10px">Favorite Movies <span style="font-size:10px; ">(auto
                     update)</span></h1>
@@ -74,6 +74,7 @@
                         <th class="thnormal">Trailer</th>
                         <th class="thnormal">Rating</th>
                     </tr>
+
                     {{#each trending}}
                     <tr bgcolor="#F4F4F4">
                         <td> <a href="/details/movie/{{id}}">{{title}}</a>
@@ -86,24 +87,21 @@
 
                     </tr>
                     {{/each}}
-
                 </tbody>
             </table>
+            <span id="data"></span>
         </div>
-
     </div>
+
     {{page}}
-    <a href="/next">Next</a>
-    <span id="previous">
-    </span>
 </body>
 
 
 <script>
-    if ({{ page }} > 1) {
-        console.log("ada")
-        document.getElementById("previous").innerHTML = "<a href='/previous'>previous</a>";
-        i
+
+    if ({{ data }} == 0) {
+        document.getElementById("data").innerHTML = "<h1 class='text-center ml-5 mt-2'>Not Found</h1>";
+
     }
 </script>
 
