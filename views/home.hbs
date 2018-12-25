@@ -11,147 +11,36 @@
     <title>Document</title>
 </head>
 
-<body style="overflow-x: hidden;">
-    <div style="background-color:rgb(231, 247, 91);  ">
-
-        <h2 class="pt-5"><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_960_720.png" alt=""
-                width="100px;"> <span style="color: chartreuse">Banana</span><span class="text-white">Torrent</span>
+<body style="overflow-x: hidden;background-color:rgb(231, 247, 91); ">
+    <div class="text-center " style="margin-top:10%">
+        <h2 class="pt-5 "><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_960_720.png" alt=""
+                width="100px;">
+            <span style="color: chartreuse">Banana</span><span class="text-white">Torrent</span>
             <img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_960_720.png" alt="" width="100px;"
                 style="transform: scaleX(-1);"></h2>
-
-
-
-
-
-
+    </div>
+    <div class="container mt-4" style="width:50%;">
         <form class="form-inline my-2 my-lg-0 pt-2 ml-2 " action="/search" method="get">
             <input class="form-control mr-sm-2" name="query" type="text" placeholder="All Movies HD AND NO VIRUS"
-                aria-label="Search" style="width:700px;">
-            <button class="btn text-white" style="background-color:rgb(194, 191, 11)" type="submit">Search</button>
+                aria-label="Search" style="width:800px;">
         </form>
 
-        <nav class="navbar navbar-expand-lg  mt-3" style="background-color:rgb(226, 247, 37)">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="/" style="text-shadow:1px 1px 4px  black">Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/trending/1" style="text-shadow:1px 1px 4px  black">Trending</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/year/1" style="text-shadow:1px 1px 4px  black">Year</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/rating/1" style="text-shadow:1px 1px 4px  black">Rating</a>
-                    </li>
-
-
-                </ul>
-
+        <div class="row">
+            <div class="col-md-6">
+                <a class="nav-link text-white" href="/trending/1" style="text-shadow:1px 1px 4px  black">Top movies By
+                    Trending
+                </a>
             </div>
-        </nav>
-
-    </div>
-
-
-
-
-
-
-
-
-    <div class="row mt-5 ml-1 mr-1">
-        <div class="col-md-12">
-            <h1 class="h5" style="margin-left:10px">By Trending <span style="font-size:10px; ">(auto
-                    update)</span></h1>
-
-
-            <table class="table2" cellpadding="6" cellspacing="0" style="width:100%">
-                <tbody>
-                    <tr>
-                        <th class="thleft">Torrent Name</th>
-                        <th class="thnormal">Size 1080p</th>
-                        <th class="thnormal">Size 720p</th>
-                        <th class="thnormal">Trailer</th>
-                        <th class="thnormal">Rating</th>
-                    </tr>
-                    {{#each trending}}
-                    <tr bgcolor="#F4F4F4">
-                        <td> <a href="/details/movie/{{imdb_id}}">{{title}}</a>
-                        </td>
-                        <td class="tdnormal">{{torrents.en.1080p.filesize}}</td>
-                        <td class="tdnormal">{{torrents.en.720p.filesize}}</td>
-
-                        <td class="tdseed"><a href="{{trailer}}">Trailer</a></td>
-                        <td class="tdleech">{{rating.percentage}}%</td>
-
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-            <a href="/trending/1">More</a>
-
-            <h1 class="h5 mt-5" style="margin-left:10px">By Year <span style="font-size:10px; ">(auto
-                    update)</span></h1>
-            <table class="table2" cellpadding="6" cellspacing="0" style="width:100%">
-                <tbody>
-                    <tr>
-                        <th class="thleft">Torrent Name</th>
-                        <th class="thnormal">Size 1080p</th>
-                        <th class="thnormal">Size 720p</th>
-                        <th class="thnormal">Rating</th>
-                    </tr>
-                    {{#each year}}
-                    <tr bgcolor="#F4F4F4">
-                        <td> <a href="/details/movie/{{imdb_id}}">{{title}}</a>
-                        </td>
-                        <td class="tdnormal">{{torrents.en.1080p.filesize}}</td>
-                        <td class="tdnormal">{{torrents.en.720p.filesize}}</td>
-                        <td class="tdseed"><a href="{{trailer}}">Trailer</a></td>
-
-                        <td class="tdleech">{{rating.percentage}}%</td>
-
-                    </tr>
-                    {{/each}}
-
-                </tbody>
-            </table>
-
-
-            <h1 class="h5 mt-5" style="margin-left:10px">By Rating <span style="font-size:10px; ">(auto
-                    update)</span></h1>
-            <table class="table2" cellpadding="6" cellspacing="0" style="width:100%">
-                <tbody>
-                    <tr>
-                        <th class="thleft">Torrent Name</th>
-                        <th class="thnormal">Size 1080p</th>
-                        <th class="thnormal">Size 720p</th>
-                        <th class="thnormal">Rating</th>
-                    </tr>
-                    {{#each rating}}
-                    <tr bgcolor="#F4F4F4">
-                        <td> <a href="/details/movie/{{imdb_id}}">{{title}}</a>
-                        </td>
-                        <td class="tdnormal">{{torrents.en.1080p.filesize}}</td>
-                        <td class="tdnormal">{{torrents.en.720p.filesize}}</td>
-                        <td class="tdseed"><a href="{{trailer}}">Trailer</a></td>
-
-                        <td class="tdleech">{{rating.percentage}}%</td>
-
-                    </tr>
-                    {{/each}}
-
-                </tbody>
-            </table>
+            <div class="col-md-6">
+                <a class="nav-link text-white text-right" href="/" style="text-shadow:1px 1px 4px  black"> Last Add
+                    Movies</a>
+            </div>
         </div>
 
     </div>
+
+
+
 
 </body>
 

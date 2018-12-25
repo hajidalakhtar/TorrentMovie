@@ -3,8 +3,8 @@ const app = express();
 const axios = require('axios');
 const cons = require('consolidate');
 const PopCorn = require('popcorn-api');
+var magnetToTorrent = require('magnet-to-torrent');
 
-// const magnet2torrent = require('magnetorrent')
 app.engine('hbs', cons.handlebars);
 app.set('view engine', 'hbs');
 app.set('views', './views')
@@ -28,15 +28,14 @@ axios.get(`https://tv-v2.api-fetch.website/movies`)
 // ==================================== Routes ====================================== \\
 
 global.page = 1;
-global.trending1 = [{ title: "Reaload Pless" }]
-global.year = []
-global.rating = []
+
 
 
 app.get('/', (req, res) => {
     res.redirect('/browse-movies')
 
 })
+
 
 app.get('/search', (req, res) => {
     // res.redirect('/browse-movies')
@@ -64,37 +63,7 @@ app.get('/previous', (req, res) => {
 
 app.get('/browse-movies', (req, res) => {
 
-    axios.get(`https://tv-v2.api-fetch.website/movies/1?sort=trending&order=-1`)
-        .then(function (response) {
-            // function data(data) {
-            global.trending1 = response.data;
-            global.trending1.length = 10
-            // data(response.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-    axios.get(`https://tv-v2.api-fetch.website/movies/1?sort=year&order=-1`)
-        .then(function (response) {
-            global.year = response.data;
-            global.year.length = 10
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-    axios.get(`https://tv-v2.api-fetch.website/movies/1?sort=rating&order=-1`)
-        .then(function (response) {
-            global.rating = response.data;
-            global.rating.length = 10
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-
-    res.render('home', { trending: trending1, year: year, rating: rating })
+    res.render('home')
 
 })
 
