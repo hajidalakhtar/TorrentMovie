@@ -10,7 +10,44 @@
     <title>Document</title>
 </head>
 
-<body>
+
+<body style="overflow-x: hidden;">
+
+    <div style="background-color:rgb(231, 247, 91);  ">
+        <form class="form-inline my-2 my-lg-0 pt-5 ml-2 " action="/search" method="get">
+            <input class="form-control mr-sm-2" name="query" type="text" placeholder="Search" aria-label="Search" style="width:700px;">
+            <button class="btn text-white" style="background-color:rgb(194, 191, 11)" type="submit">Search</button>
+        </form>
+
+        <nav class="navbar navbar-expand-lg  mt-3" style="background-color:rgb(226, 247, 37)">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/" style="text-shadow:1px 1px 4px  black">Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/trending/1" style="text-shadow:1px 1px 4px  black">Trending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/year/1" style="text-shadow:1px 1px 4px  black">Year</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/rating/1" style="text-shadow:1px 1px 4px  black">Rating</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+    </div>
+
     <h1 class="text-center">{{data.title}}</h1>
     <h4 class="text-center">Download</h4>
     <div class="text-center">

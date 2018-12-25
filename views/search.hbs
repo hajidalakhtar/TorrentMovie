@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <body style="overflow-x: hidden;">
+
+        <div style="background-color:rgb(231, 247, 91);  ">
+            <form class="form-inline my-2 my-lg-0 pt-5 ml-2 " action="/search" method="get">
+                <input class="form-control mr-sm-2" name="query" type="text" placeholder="Search" aria-label="Search"
+                    style="width:700px;">
+                <button class="btn text-white" style="background-color:rgb(194, 191, 11)" type="submit">Search</button>
+            </form>
+
+            <nav class="navbar navbar-expand-lg  mt-3" style="background-color:rgb(226, 247, 37)">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="/" style="text-shadow:1px 1px 4px  black">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/trending/1" style="text-shadow:1px 1px 4px  black">Trending</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/year/1" style="text-shadow:1px 1px 4px  black">Year</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/rating/1" style="text-shadow:1px 1px 4px  black">Rating</a>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </nav>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="h5" style="margin-left:10px">Favorite Movies <span style="font-size:10px; ">(auto
+                        update)</span></h1>
+
+
+                <table class="table2" cellpadding="6" cellspacing="0" style="width:100%">
+                    <tbody>
+                        <tr>
+                            <th class="thleft">Torrent Name</th>
+                            <th class="thnormal">Size 1080p</th>
+                            <th class="thnormal">Size 720p</th>
+                            <th class="thnormal">Trailer</th>
+                            <th class="thnormal">Rating</th>
+                        </tr>
+                        {{#each trending}}
+                        <tr bgcolor="#F4F4F4">
+                            <td> <a href="/details/movie/{{id}}">{{title}}</a>
+                            </td>
+                            <td class="tdnormal">{{torrents.en.1080p.fileSize}}</td>
+                            <td class="tdnormal">{{torrents.en.720p.fileSize}}</td>
+
+                            <td class="tdseed"><a href="{{trailer}}">Trailer</a></td>
+                            <td class="tdleech">{{rating.percentage}}%</td>
+
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                tes
+            </div>
+        </div>
+        {{page}}
+        <a href="/next">Next</a>
+        <span id="previous">
+        </span>
+    </body>
+
+
+    <script>
+        if ({{ page }} > 1) {
+            console.log("ada")
+            document.getElementById("previous").innerHTML = "<a href='/previous'>previous</a>";
+            i
+        }
+    </script>
+
+
+</html>
