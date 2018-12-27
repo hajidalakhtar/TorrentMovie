@@ -14,11 +14,9 @@
 <body style="overflow-x: hidden;">
 
     <div style="background-color:rgb(231, 247, 91);  ">
-        <h2 class="pt-5"><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_960_720.png" alt=""
-                width="100px;"> <span style="color: chartreuse">Banana</span><span class="text-white">Torrent</span>
-            <img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_960_720.png" alt="" width="100px;"
-                style="transform: scaleX(-1);"></h2>
-
+        <h2 class="pt-5"><img src="banana-42793_960_720.png" alt="" width="100px;"> <span style="color: chartreuse">Banana</span><span
+                class="text-white">Torrent</span>
+            <img src="banana-42793_960_720.png" alt="" width="100px;" style="transform: scaleX(-1);"></h2>
 
 
 
@@ -59,12 +57,21 @@
 
     </div>
 
-    <h1 class="text-center">{{data.title}}</h1>
-    <h4 class="text-center">Download</h4>
-    <div class="text-center">
-        <a href="{{data.torrents.en.1080p.url}}">1080p</a>
-        <a href="{{data.torrents.en.720p.url}}">720p</a>
+    <div class="row">
+        <div class="col-md-3">
+            <h1 class="">{{data.title}}</h1>
+            <h4 class="">Download</h4>
+            <div class="">
+                <a href="{{data.torrents.en.1080p.url}}">1080p</a>
+                <a href="{{data.torrents.en.720p.url}}">720p</a>
+
+            </div>
+        </div>
+        <img src="{{data.images.poster}}" alt="" width="30%;" height="80%;">
+
     </div>
+
+
 </body>
 
 </html>
