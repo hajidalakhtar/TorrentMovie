@@ -3,9 +3,9 @@ const app = express();
 const axios = require('axios');
 const cons = require('consolidate');
 const PopCorn = require('popcorn-api');
-const WebTorrent = require('webtorrent')
-const client = new WebTorrent()
-// var magnetToTorrent = require('magnet-to-torrent');
+const torrentStream = require('torrent-stream');
+
+// const magnetToTorrent = require('magnet-to-torrent');
 
 app.engine('hbs', cons.handlebars);
 app.set('view engine', 'hbs');
@@ -13,7 +13,7 @@ app.set('views', './views')
 
 axios.get(`https://tv-v2.api-fetch.website/movies`)
     .then(function (response) {
-        var data = response.data
+        const data = response.data
         global.datalength = 4
     })
     .catch(function (error) {
@@ -30,23 +30,16 @@ axios.get(`https://tv-v2.api-fetch.website/movies`)
 // ==================================== Routes ====================================== \\
 
 app.get('/tes', (req, res) => {
-    if (WebTorrent.WEBRTC_SUPPORT) {
-        console.log('bisa');
+    var engine = torrentStream('magnet:?xt=urn:btih:d18a9718c3e7270b57e40249c96ebf48a1999085&tr=udp%3A%2F%2F9.rarbg.com%3A2800%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2720%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2710%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2720%2Fannounce&tr=udp%3A%2F%2Feddie4.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fmgtracker.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337&tr=udp%3A%2F%2Ftorrent.gresille.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.1337x.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.blackunicorn.xyz%3A6969&tr=udp%3A%2F%2Ftracker.btzoo.eu%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A80&tr=udp%3A%2F%2Ftracker.glotorrents.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.istole.it%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publichd.eu%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451&tr=udp%3A%2F%2Ftracker.vanitycore.co%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.zond.org%3A80%2Fannounce');
 
-    } else {
-        console.log('kaga bisa');
+    engine.on('ready', function () {
+        engine.files.forEach(function (file) {
+            console.log('filename:', file.name);
+            var stream = file.createReadStream();
+            // stream is readable stream to containing the file content
+        });
+    });
 
-        // Use a fallback
-    }
-    var torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
-    client.add(torrentId, function (torrent) {
-        // Torrents can contain many files. Let's use the .mp4 file
-        var file = torrent.files.find(function (file) {
-            return file.name.endsWith('.mp4')
-        })
-        // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
-        file.appendTo('body')
-    })
 });
 
 global.page = 1;
