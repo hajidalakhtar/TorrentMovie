@@ -14,7 +14,7 @@
     "axios": "^0.18.0",
     "circular-json": "^0.5.9",
     "consolidate": "^0.15.1",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "handlebars": "^4.0.12",
     "log4js": "^3.0.6",
     "magnet-to-torrent": "^1.0.6",
